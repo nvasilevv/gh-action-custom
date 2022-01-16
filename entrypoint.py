@@ -43,7 +43,7 @@ def create_release_if_necessary(event_path: dict, keyword: str) -> None:
     if not to_release:
         print("Nothing to process")
         return
-    version = datetime.datetime.now().strftime('%Y%m%d-%H:%M:%S')
+    version = datetime.datetime.now().strftime('%Y%m%d-%H%M%S')
     data = {'tag_name': f'v{version}',
             'target_commitish': 'main',
             'name': f'v{version}',
