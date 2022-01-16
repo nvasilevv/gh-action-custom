@@ -4,12 +4,7 @@ import json
 import requests
 import argparse
 import re
-
-
-def parse_args():
-    parser = argparse.ArgumentParser(description="provide keyword")
-    parser.add_argument("--keyword", required=True, type=str)
-    return parser.parse_args()
+import sys
 
 
 def get_event_path() -> dict:
@@ -66,6 +61,8 @@ def create_release_if_necessary(event_path: dict, keyword: str) -> None:
 
 
 if __name__ == "__main__":
-    args = parse_args()
+    keyword = sys.argv[1]
+    if not keyword:
+        print('No keyword found')
     event_path = get_event_path()
-    create_release_if_necessary(event_path, args.keyword)
+    create_release_if_necessary(event_path, keyword)
