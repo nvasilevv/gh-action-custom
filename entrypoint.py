@@ -24,7 +24,7 @@ def get_event_path() -> dict:
 
 
 def check_if_word_present(message: str, keyword: str) -> bool:
-    match = re.search(keyword, message)
+    match = re.search(keyword.lower(), message.lower())
     if match:
         return True
     else:
