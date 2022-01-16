@@ -51,12 +51,12 @@ def create_release_if_necessary(event_path: dict, keyword: str) -> None:
             'draft': False,
             'prerelease': False
             }
-    url = f'https://api.github.com/repos/{os.getenv("GITHUB_REPOSITORY")}/releases?access_token={os.getenv("GITHUB_TOKEN")}'
+    url = f'https://api.github.com/repos/{os.getenv("GITHUB_REPOSITORY")}/releases'
 
     if event_path['isTest']:
         print("## [TESTING] Keyword was found but no release created.")
     else:
-        response = requests.post(url, data=json.dumps(data))
+        response = requests.post(url, data=json.dumps(data),headers={'Authorization': os.getenv("GITHUB_TOKEN")})
         print(json.loads(response.content))
 
 
