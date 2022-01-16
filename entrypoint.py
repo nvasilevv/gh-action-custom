@@ -49,7 +49,8 @@ def create_release_if_necessary(event_path: dict, keyword: str) -> None:
             'name': f'v{version}',
             'body': f'Automated release based on keyword: {keyword}',
             'draft': False,
-            'prerelease': False
+            'prerelease': False,
+            'discussion_category_name': None
             }
     url = f'https://api.github.com/repos/{os.getenv("GITHUB_REPOSITORY")}/releases'
 
