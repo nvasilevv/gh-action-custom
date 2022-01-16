@@ -57,7 +57,7 @@ def create_release_if_necessary(event_path: dict, keyword: str) -> None:
     if event_path['isTest']:
         print("## [TESTING] Keyword was found but no release created.")
     else:
-        response = requests.post(url, data=json.dumps(data), headers={'Authorization': os.getenv("GITHUB_TOKEN")})
+        response = requests.post(url, data=json.dumps(data), headers={'Authorization': f'token {os.getenv("GITHUB_TOKEN")}'})
         print(json.loads(response.content))
 
 
