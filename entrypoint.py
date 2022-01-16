@@ -45,7 +45,7 @@ def create_release_if_necessary(event_path: dict, keyword: str) -> None:
         return
     version = datetime.datetime.now().strftime('%Y%m%d-%H:%M:%S')
     data = {'tag_name': f'v{version}',
-            'target_commitish': 'master',
+            'target_commitish': 'main',
             'name': f'v{version}',
             'body': f'Automated release based on keyword: {keyword}',
             'draft': False,
@@ -56,7 +56,7 @@ def create_release_if_necessary(event_path: dict, keyword: str) -> None:
     if event_path['isTest']:
         print("## [TESTING] Keyword was found but no release created.")
     else:
-        response = requests.post(url, data=json.dumps(data),headers={'Authorization': os.getenv("GITHUB_TOKEN")})
+        response = requests.post(url, data=json.dumps(data), headers={'Authorization': os.getenv("GITHUB_TOKEN")})
         print(json.loads(response.content))
 
 
